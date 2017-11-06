@@ -2,6 +2,16 @@ const Koa = require('koa'),
       app = new Koa(),
       session = require('koa-session-minimal'),
       mongo = require('koa-generic-session-mongo');
+const router = require('koa-router')();
+const render = require('./lib/render');
+const nginx_router = require('./src/router/router');
+
+app.use(render());
+
+app.use(router.routes())
+.use(router.allowedMethods());
+
+nginx_router(router);
 
 var st = new mongo({
   host : '127.0.0.1',
