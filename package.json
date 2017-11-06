@@ -1,0 +1,17 @@
+{
+  "name": "node_session",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.3.0",
+    "koa-generic-session-mongo": "^0.4.0",
+    "koa-session-minimal": "^3.0.4",
+    "koa-session-mongo": "^1.1.0"
+  }
+}
