@@ -10,3 +10,6 @@ ul, li {
 
 a {
   text-decoration: none; }
+
+*::selection {
+  background: #F7766E; }

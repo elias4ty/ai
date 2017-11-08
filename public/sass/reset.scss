@@ -1,3 +1,5 @@
+$gray : #969696;
+
 *{
   margin: 0;
   padding: 0;
@@ -12,4 +14,8 @@ ul,li{
 
 a{
   text-decoration: none;
+}
+
+*::selection{
+  background: #F7766E;
 }
