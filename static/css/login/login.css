@@ -81,4 +81,5 @@ html, body {
       border: none;
       border-radius: 5px;
       color: #969696;
-      cursor: pointer; }
+      cursor: pointer;
+      outline: none; }
