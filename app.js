@@ -3,10 +3,12 @@ global.BASE_PATH = __dirname;
 const Koa = require('koa'),
       app = new Koa(),
       session = require('koa-session-minimal'),
-      mongo = require('koa-generic-session-mongo');
-const router = require('koa-router')();
-const render = require('./lib/render');
-const nginx_router = require('./src/router/router');
+      mongo = require('koa-generic-session-mongo'),
+      router = require('koa-router')(),
+      render = require('./lib/render'),
+      nginx_router = require('./src/router/router'),
+      bodyParser = require('koa-bodyparser'),
+      DBHander = require('./lib/DBHandler');
 
 var st = new mongo({
   host : '127.0.0.1',
@@ -17,7 +19,9 @@ var st = new mongo({
   collection : 'elias_session'
 });
 
+app.use(bodyParser());
 app.use(render());
+app.use(DBHander());
 
 app.use(
   session({
