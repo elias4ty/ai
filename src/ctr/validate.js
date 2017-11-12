@@ -1,10 +1,20 @@
 const validateModel = require('../models/validate');
 
-exports.getVali = function* (next){
-   let data = this.request.body,
-       isCustomer = validateModel.identify(data.user,data.password);
+exports.getVali = async function (){
 
-   if(isCustomer){
-      this.ctx.redirect(data.referrer);
-   }
+    let data = this.request.body.fields;
+
+    let isCustomer = await validateModel.identify(data.user,data.pwd)
+
+    if(isCustomer.length){
+        this.body = {
+           status: 'ok',
+           url : data.referer
+        }
+    }else{
+        this.body = {
+            status : 'fail',
+            message : '用户名或者密码错误！'
+        }
+    }
 }

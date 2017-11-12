@@ -1,4 +1,5 @@
-const validateSchema = require('../schemas/validate'),
-      validateModel = this.mongo.model('session',validateSchema);
+const mongoose = require('mongoose'),
+      validateSchema = require('../schemas/validate'),
+      validateModel = mongoose.model('elias_session',validateSchema);
 
 module.exports = validateModel;

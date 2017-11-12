@@ -11,15 +11,14 @@
   <section class="right">
     <div class="login">
       <span class="title">Login</span>
-      <form action="/validate" method="post">
-          <p><input id="user" type="text" name="Username" placeholder="Username"/></p>
-          <p><input id="pwd" type="password" name="Password" placeholder="Password"/></p>
-          <input id="submit" type="submit" value="Sign in"></input>
-      </form>
+      <p><input id="user" type="text" name="Username" placeholder="Username"/></p>
+      <p><input id="pwd" type="password" name="Password" placeholder="Password"/></p>
+      <input id="submit" type="submit" value="Sign in"/>
+      <input type="hidden" name="referer" id="referer"/>
     </div>
-    <div class="corner"><img src="/resource/images/login/corner.jpg" alt="corner"></div>
+    <!--<div class="corner"><img src="/resource/images/login/corner.jpg" alt="corner"></div>-->
   </section>
 {% endblock %}
 {% block bottom %}
-  <script type="text/javascript" src="/resource/js/login/login.js"></script>
+  <script type="text/javascript" src="/resource/js/login/login.js?v1"></script>
 {% endblock %}

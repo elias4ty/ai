@@ -1,10 +1,11 @@
-const schema = this.schema,
+const mongoose = require('mongoose'),
+      schema = mongoose.Schema,
       validateSchema = new schema({
         user : String,
         password : String,
         sid : String,
         ttl : Date
-      },{conllection:'elias_session'});
+      },{collection:'elias_session'});
 
 validateSchema.statics = {
     findSession(ss) {
@@ -18,13 +19,16 @@ validateSchema.statics = {
         })
     },
     identify(user,password){
-        this.find({user,password},function (err,data) {
-            if(!data.length){
-                return 'OK';
-            }else{
-                return 'None';
-            }
+        var that = this;
+        return new Promise((rv,rj) =>{
+            that.find({user,password},(err,data) => {
+                if(err) throw('db occurs error!')
+
+                    rv(data)
+
+            })
         })
+
     }
 }
 

@@ -1,0 +1,40 @@
+@import "../reset";
+
+section{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  float: left;
+  flex-flow: wrap;
+  align-items: center;
+}
+
+.progress{
+  width: 20%;
+}
+
+img{
+  width: 200px;
+  height: 100%;
+}
+
+.contain{
+  margin-top: 15px;
+  height: 18px;
+  width: 200px;
+
+  input{
+    width: 160px;
+  }
+
+  p{
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+button{
+  width: 40%;
+  height:40px;
+}

@@ -7,8 +7,10 @@ const Koa = require('koa'),
       router = require('koa-router')(),
       render = require('./lib/render'),
       nginx_router = require('./src/router/router'),
-      bodyParser = require('koa-bodyparser'),
-      DBHander = require('./lib/DBHandler');
+    // 只能处理简单数据，无法处理 formdata 等复复杂数据。弃用
+    // bodyParser = require('koa-bodyparser'),
+      DBHander = require('./lib/DBHandler'),
+      koaBody = require('koa-body'); // 用来处理 post 传送的 formdata 复杂类型数据
 
 var st = new mongo({
   host : '127.0.0.1',
@@ -19,7 +21,7 @@ var st = new mongo({
   collection : 'elias_session'
 });
 
-app.use(bodyParser());
+app.use(koaBody({multipart: true}));
 app.use(render());
 app.use(DBHander());
 
@@ -36,22 +38,26 @@ app.use(
 )
 
 app.use(async (ctx,next) => {
-  console.log(`cookies:${ctx.cookies.get('ELIAS_SESSION')}`)
-  console.log(`ctx.session:${ctx.session}`)
+  // console.log(`cookies:${ctx.cookies.get('ELIAS_SESSION')}`)
+  // console.log(`ctx.session:${ctx.session}`)
 
   //已登录
   if(ctx.cookies.get('ELIAS_SESSION')){
     console.log(`ELIAS_SESSION:${ctx.cookies.get('ELIAS_SESSION')}`)
     await next()
   }
+  else if(/(login|validate)/g.test(ctx.path)){
+      await next()
+  }
   // 未登录
   else{
     // 这一步就是在浏览器中种下 session 的 cookie，配置在上文中
       ctx.session = {
-        user_id: Math.random().toString(36).substr(2),
-        count: 0
+        user: 'admin',
+        password: 'admin'
       }
-      ctx.redirect('/login');
+      console.log(ctx.path)
+      ctx.redirect('/login?referer='+ctx.url);
   }
 })
 

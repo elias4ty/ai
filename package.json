@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "busboy": "^0.2.14",
     "koa": "^2.3.0",
-    "koa-bodyparser": "^4.2.0",
+    "koa-body": "^2.5.0",
     "koa-generic-session-mongo": "^0.4.0",
     "koa-router": "^5.4.0",
     "koa-session-minimal": "^3.0.4",

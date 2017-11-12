@@ -1,0 +1,39 @@
+{% extends "../common/global.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/resource/css/face/face.css">
+{% endblock%}
+
+{% block body %}
+<body>
+
+    <section class="input">
+        <div>
+            <img src="/resource/images/default.jpg" alt="上传图片" title="上传图片"/>
+            <div class="contain">
+                <p id="upload">
+                    <input type="file" value="上传图片"/>
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="progress">
+        <button>点击开始</button>
+    </section>
+
+    <section class="ouput">
+        <div>
+            <img src="/resource/images/default.jpg" alt="解析图片" title="解析图片"/>
+            <div class="contain"></div>
+        </div>
+    </section>
+
+ </body>
+
+{% endblock %}
+
+{% block bottom %}
+<script src="/resource/js/face/face.js?v1" type="application/javascript"></script>
+{% endblock %}
