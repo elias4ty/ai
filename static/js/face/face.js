@@ -1,21 +1,4 @@
-// btn.one('click',function(){
-//
-//     var that = this;
-//     $(this).text('扫描中...');
-//
-//     $.ajax('/ai',{
-//         success : function(r){
-//             r = JSON.parse(r)
-//             console.log(r)
-//             if(r.status == 200 && r.message == 'OK'){
-//                 let result = $('.end').append('<img src="'+r.url+'" alt="end" width="300">');
-//                 $(that).text('扫描结束!')
-//             }
-//         }
-//     })
-// })
-
-var upload = $('input');
+var upload = $('input'),btn = $('button');
 
 upload.bind('change',function (pic) {
     console.log(this.files)
@@ -23,7 +6,7 @@ upload.bind('change',function (pic) {
     data.append('picture',this.files[0])
 
     $.ajax({
-        url : '/savePic/',
+        url : '/ai/savePic/',
         method : 'POST',
         data : data,
         processData: false,
@@ -31,7 +14,24 @@ upload.bind('change',function (pic) {
     }).then(function (result) {
             result = JSON.parse(result)
             if(result && result.status == 200){
-                $('.input img').attr('src','file://'+result.url)
+                $('.input img').attr('src',result.url)
             }
+    })
+})
+
+btn.one('click',function(){
+
+    var that = this;
+    $(this).text('扫描中...');
+
+    $.ajax('/ai/',{
+        success : function(r){
+            r = JSON.parse(r)
+            console.log(r)
+            if(r.status == 200 && r.message == 'OK'){
+                let result = $('.end').append('<img src="'+r.url+'" alt="end" width="300">');
+                $(that).text('扫描结束!')
+            }
+        }
     })
 })
