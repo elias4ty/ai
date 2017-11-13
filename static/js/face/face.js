@@ -29,8 +29,8 @@ btn.one('click',function(){
             r = JSON.parse(r)
             console.log(r)
             if(r.status == 200 && r.message == 'OK'){
-                let result = $('.end').append('<img src="'+r.url+'" alt="end" width="300">');
-                $(that).text('扫描结束!')
+                $('.output img').attr('src',r.url)
+		$(that).text('扫描结束!')
             }
         }
     })

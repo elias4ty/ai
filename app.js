@@ -8,7 +8,7 @@ const Koa = require('koa'),
       render = require('./lib/render'),
       nginx_router = require('./src/router/router'),
     // 只能处理简单数据，无法处理 formdata 等复复杂数据。弃用
-    // bodyParser = require('koa-bodyparser'),
+      //bodyParser = require('koa-bodyparser'),
       DBHander = require('./lib/DBHandler'),
       koaBody = require('koa-body'); // 用来处理 post 传送的 formdata 复杂类型数据
 
@@ -21,6 +21,7 @@ var st = new mongo({
   collection : 'elias_session'
 });
 
+app.use(bodyParser());
 app.use(koaBody({multipart: true}));
 app.use(render());
 app.use(DBHander());
@@ -32,14 +33,14 @@ app.use(
     cookie : {
       maxAge : 1000*60*60*24*2, // session cooike 的有效时间，0 为 'session'，即浏览器关闭
       path : '/',
-      domain : 'localhost'
+      domain : '47.95.114.247'
     }
   })
 )
 
 app.use(async (ctx,next) => {
-  // console.log(`cookies:${ctx.cookies.get('ELIAS_SESSION')}`)
-  // console.log(`ctx.session:${ctx.session}`)
+   console.log(`cookies:${ctx.cookies.get('ELIAS_SESSION')}`)
+   console.log(`ctx.session:${ctx.session}`)
 
   //已登录
   if(ctx.cookies.get('ELIAS_SESSION')){
@@ -56,7 +57,7 @@ app.use(async (ctx,next) => {
         user: 'admin',
         password: 'admin'
       }
-      console.log(ctx.path)
+      console.log(ctx.session)
       ctx.redirect('/login?referer='+ctx.url);
   }
 })
