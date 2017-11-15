@@ -1,4 +1,5 @@
 global.BASE_PATH = __dirname;
+global.ENV = process.argv[2];
 
 const Koa = require('koa'),
       app = new Koa(),
@@ -7,10 +8,11 @@ const Koa = require('koa'),
       router = require('koa-router')(),
       render = require('./lib/render'),
       nginx_router = require('./src/router/router'),
-    // 只能处理简单数据，无法处理 formdata 等复复杂数据。弃用
+      // 只能处理简单数据，无法处理 formdata 等复复杂数据。弃用
       //bodyParser = require('koa-bodyparser'),
       DBHander = require('./lib/DBHandler'),
-      koaBody = require('koa-body'); // 用来处理 post 传送的 formdata 复杂类型数据
+      koaBody = require('koa-body'), // 用来处理 post 传送的 formdata 复杂类型数据
+      config = require('./lib/config');
 
 var st = new mongo({
   host : '127.0.0.1',
@@ -21,7 +23,7 @@ var st = new mongo({
   collection : 'elias_session'
 });
 
-app.use(bodyParser());
+// app.use(bodyParser());
 app.use(koaBody({multipart: true}));
 app.use(render());
 app.use(DBHander());
@@ -33,7 +35,7 @@ app.use(
     cookie : {
       maxAge : 1000*60*60*24*2, // session cooike 的有效时间，0 为 'session'，即浏览器关闭
       path : '/',
-      domain : '47.95.114.247'
+      domain : config.domain()
     }
   })
 )
