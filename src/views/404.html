@@ -5,60 +5,17 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="/resource/js/jquery-3.2.1.min.js"></script>
-  <title>Welcome to my world</title>
-  <style >
-    .main{
-      width: 80%;
-      height: 400px;
-      margin: 0 auto;
-    }
-    .start{
-      width: 300px;
-      height: auto;
-      float: left;
-    }
-    .end{
-      width: 300px;
-      height: auto;
-      float: right;      
-    }
-    button{
-      height: 100px;
-      width: 100px;
-      margin: 100px;
-    }
+  <link rel="stylesheet" href="/resource/css/reset.css"/>
+  <title>404</title>
+  <style>
+  img{
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
   </style>
 </head>
 <body>
-400.html 
+<div><img src="/resource/images/404.jpg"></div>
 </body>
-<script type="text/javascript">
-(function($){
-
-	let btn = $('button');
-	
-	btn.one('click',function(){
-
-		var that = this;
-		$(this).text('扫描中...');
-
-		$.ajax('/ai',{
-			success : function(r){
-				 r = JSON.parse(r)
-				 console.log(r)
-				 if(r.status == 200 && r.message == 'OK'){
-					let result = $('.end').append('<img src="'+r.url+'" alt="end" width="300">');
-					$(that).text('扫描结束!')
-				 }
-			}
-		})
-	})
-
-})(jQuery)
-
-
-</script>
-
-
 </html>
-

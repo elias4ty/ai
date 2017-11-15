@@ -21,7 +21,7 @@ var st = new mongo({
   collection : 'elias_session'
 });
 
-app.use(bodyParser());
+// app.use(bodyParser());
 app.use(koaBody({multipart: true}));
 app.use(render());
 app.use(DBHander());
@@ -33,7 +33,7 @@ app.use(
     cookie : {
       maxAge : 1000*60*60*24*2, // session cooike 的有效时间，0 为 'session'，即浏览器关闭
       path : '/',
-      domain : '47.95.114.247'
+      domain : 'localhost'
     }
   })
 )
