@@ -1,7 +1,7 @@
 var upload = $('input'),btn = $('button');
 
-upload.bind('change',function (pic) {
-    console.log(this.files)
+upload.bind('change',function () {
+
     var data = new FormData();
     data.append('picture',this.files[0])
 
