@@ -41,8 +41,6 @@ app.use(
 )
 
 app.use(async (ctx,next) => {
-   console.log(`cookies:${ctx.cookies.get('ELIAS_SESSION')}`)
-   console.log(`ctx.session:${ctx.session}`)
 
   //已登录
   if(ctx.cookies.get('ELIAS_SESSION')){
@@ -54,12 +52,6 @@ app.use(async (ctx,next) => {
   }
   // 未登录
   else{
-    // 这一步就是在浏览器中种下 session 的 cookie，配置在上文中
-      ctx.session = {
-        user: 'admin',
-        password: 'admin'
-      }
-      console.log(ctx.session)
       ctx.redirect('/login?referer='+ctx.url);
   }
 })

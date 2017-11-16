@@ -22,6 +22,11 @@
   submit.bind('click',function () {
 
       var data = new FormData();
+
+      if(user.value === '' || pwd.value === ''){
+          alert('用户名或者密码不能为空')
+          return 
+      }
       data.append('user',user.value);
       data.append('pwd',pwd.value);
       data.append('referer',referer.value);
