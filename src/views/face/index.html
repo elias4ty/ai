@@ -5,14 +5,12 @@
 {% endblock%}
 
 {% block body %}
-<body>
-
     <section class="input">
         <div>
-            <img src="/resource/images/default.jpg" alt="上传图片" title="上传图片"/>
+            <img :src="inputUrl" alt="上传图片" title="上传图片"/>
             <div class="contain">
                 <p id="upload">
-                    <input type="file" value="上传图片"/>
+                    <input type="file" value="上传图片" @change="uploadFile"/>
                 </p>
             </div>
         </div>
@@ -20,18 +18,15 @@
     </section>
 
     <section class="progress">
-        <button>点击开始</button>
+        <button @click.once="identify">{btnText}</button>
     </section>
 
     <section class="output">
         <div>
-            <img src="/resource/images/default.jpg" alt="解析图片" title="解析图片"/>
+            <img :src="ouputUrl" alt="解析图片" title="解析图片"/>
             <div class="contain"></div>
         </div>
     </section>
-
- </body>
-
 {% endblock %}
 
 {% block bottom %}
