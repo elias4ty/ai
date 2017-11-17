@@ -6,15 +6,12 @@
 
 {% block body %}
     <section class="input">
-        <div>
+        <div class="child">
             <img :src="inputUrl" alt="上传图片" title="上传图片"/>
-            <div class="contain">
-                <p id="upload">
-                    <input type="file" value="上传图片" @change="uploadFile"/>
-                </p>
-            </div>
+            <p class="contain">
+                <input type="file" value="上传图片" @change="uploadFile"/>
+            </p>
         </div>
-
     </section>
 
     <section class="progress">
@@ -22,9 +19,9 @@
     </section>
 
     <section class="output">
-        <div>
+        <div class="child">
             <img :src="ouputUrl" alt="解析图片" title="解析图片"/>
-            <div class="contain"></div>
+            <p class="contain"></p>
         </div>
     </section>
 {% endblock %}
